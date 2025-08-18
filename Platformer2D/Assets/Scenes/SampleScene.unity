@@ -471,6 +471,7 @@ MonoBehaviour:
   _jumpForce: 10
   _rigidbody: {fileID: 975405408}
   _spriteRenderer: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!95 &975405413
 Animator:
   serializedVersion: 7
@@ -720,7 +721,7 @@ Transform:
   m_GameObject: {fileID: 1750787007}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.9358, y: -3.2426, z: -0.059975035}
+  m_LocalPosition: {x: 33.33, y: -4.24, z: -0.059975035}
   m_LocalScale: {x: 3.25, y: 3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
