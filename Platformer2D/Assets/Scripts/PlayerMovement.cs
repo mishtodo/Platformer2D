@@ -21,19 +21,40 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        float rayDistance = 0.75f;
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, rayDistance);
+
+        if (hitInfo)
+            _isGrounded = true;
+        else
+            _isGrounded = false;
+
+
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded == true)
         {
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            _isGrounded = false;
             _animator.Play("Jump");
         }
+
+
 
         _direction.x = Input.GetAxisRaw("Horizontal");
         _rigidbody.position += _direction * _speed * Time.deltaTime;
 
+
+
+        if (_isGrounded == false)
+            _animator.Play("Jump");
+
+
+        if (_direction.x == 0 && _isGrounded == true)
+            _animator.Play("Idle");
+
+
         if (_direction.x != 0 && _isGrounded == true)
-        {
             _animator.Play("Run");
-        }
+
 
         if (_direction.x < 0)
         {
@@ -43,15 +64,5 @@ public class PlayerMovement : MonoBehaviour
         {
             _spriteRenderer.flipX = false;
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        _isGrounded = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        _isGrounded = false;
     }
 }
