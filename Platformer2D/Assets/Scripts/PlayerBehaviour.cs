@@ -8,6 +8,9 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private Raycaster _raycaster;
     [SerializeField] private PlayerMovement _playerMovement;
 
+    private string _animationJump = "Jump";
+    private string _animationIdle = "Idle";
+    private string _animationRun = "Run";
     private bool _isGrounded;
     private float _directionX;
 
@@ -32,13 +35,13 @@ public class PlayerBehaviour : MonoBehaviour
     private void Update()
     {
         if (_isGrounded == false)
-            _animator.Play("Jump");
+            _animator.Play(_animationJump);
 
         if (_directionX == 0 && _isGrounded == true)
-            _animator.Play("Idle");
+            _animator.Play(_animationIdle);
 
         if (_directionX != 0 && _isGrounded == true)
-            _animator.Play("Run");
+            _animator.Play(_animationRun);
 
         if (_directionX < 0)
             _spriteRenderer.flipX = true;
