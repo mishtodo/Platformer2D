@@ -885,6 +885,9 @@ GameObject:
   - component: {fileID: 975405415}
   - component: {fileID: 975405416}
   - component: {fileID: 975405414}
+  - component: {fileID: 975405417}
+  - component: {fileID: 975405418}
+  - component: {fileID: 975405419}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -1016,7 +1019,7 @@ Transform:
   m_GameObject: {fileID: 975405407}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.23, y: -0.31, z: 1}
+  m_LocalPosition: {x: -5.24, y: -0.43, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1034,7 +1037,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd324d2d020ae4409dd68ec3c14b804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 1
+  _inputReader: {fileID: 975405418}
+  _rotator: {fileID: 975405417}
   _rigidbody: {fileID: 975405408}
 --- !u!95 &975405413
 Animator:
@@ -1071,9 +1076,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 975405413}
-  _spriteRenderer: {fileID: 975405410}
   _raycaster: {fileID: 975405416}
-  _playerMovement: {fileID: 975405412}
+  _inputReader: {fileID: 975405418}
 --- !u!114 &975405415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,6 +1091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 975405408}
+  _inputReader: {fileID: 975405418}
   _raycaster: {fileID: 975405416}
   _jumpForce: 10
 --- !u!114 &975405416
@@ -1102,6 +1107,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rayDistance: 0.75
+--- !u!114 &975405417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975405407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225307f25595a2b4987fed577ac16b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &975405418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975405407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07cf1d00aa94be9458e1d3eec4f2a1a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &975405419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975405407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfd8fcf5c36d9d34c9a4bf92467330c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1120354697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1502,7 @@ GameObject:
   - component: {fileID: 1334952688}
   - component: {fileID: 1334952693}
   - component: {fileID: 1334952692}
+  - component: {fileID: 1334952694}
   m_Layer: 0
   m_Name: Enemy (1)
   m_TagString: Untagged
@@ -1613,7 +1655,7 @@ MonoBehaviour:
   _waypoints:
   - {fileID: 1981538795}
   - {fileID: 1565209423}
-  _spriteRenderer: {fileID: 0}
+  _rotator: {fileID: 1334952694}
   _speed: 5
 --- !u!95 &1334952693
 Animator:
@@ -1637,6 +1679,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1334952694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334952687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225307f25595a2b4987fed577ac16b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1418468523
 GameObject:
   m_ObjectHideFlags: 0
@@ -5572,6 +5626,7 @@ GameObject:
   - component: {fileID: 2004475141}
   - component: {fileID: 2004475145}
   - component: {fileID: 2004475146}
+  - component: {fileID: 2004475147}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -5725,7 +5780,7 @@ MonoBehaviour:
   - {fileID: 1153522264}
   - {fileID: 243853099}
   - {fileID: 332536129}
-  _spriteRenderer: {fileID: 0}
+  _rotator: {fileID: 2004475147}
   _speed: 5
 --- !u!95 &2004475146
 Animator:
@@ -5749,6 +5804,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2004475147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004475140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225307f25595a2b4987fed577ac16b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2070963040
 GameObject:
   m_ObjectHideFlags: 0
@@ -5794,6 +5861,7 @@ GameObject:
   - component: {fileID: 2076365385}
   - component: {fileID: 2076365390}
   - component: {fileID: 2076365389}
+  - component: {fileID: 2076365391}
   m_Layer: 0
   m_Name: Enemy (2)
   m_TagString: Untagged
@@ -5946,7 +6014,7 @@ MonoBehaviour:
   _waypoints:
   - {fileID: 398178052}
   - {fileID: 2070963041}
-  _spriteRenderer: {fileID: 0}
+  _rotator: {fileID: 2076365391}
   _speed: 5
 --- !u!95 &2076365390
 Animator:
@@ -5970,6 +6038,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2076365391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076365384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225307f25595a2b4987fed577ac16b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2082557597
 GameObject:
   m_ObjectHideFlags: 0

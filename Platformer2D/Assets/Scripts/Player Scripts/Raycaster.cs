@@ -6,9 +6,8 @@ public class Raycaster : MonoBehaviour
     [SerializeField] private float _rayDistance = 0.75f;
 
     private RaycastHit2D _hitInfo;
-    private bool _isGrounded;
 
-    public event Action<bool> Grounded;
+    public bool IsGrounded { get; private set; }
 
     private void FixedUpdate()
     {
@@ -16,13 +15,11 @@ public class Raycaster : MonoBehaviour
 
         if (_hitInfo)
         {
-            _isGrounded = true;
-            Grounded?.Invoke(_isGrounded);
+            IsGrounded = true;
         }
         else
         {
-            _isGrounded = false;
-            Grounded?.Invoke(_isGrounded);
+            IsGrounded = false;
         }
     }
 }

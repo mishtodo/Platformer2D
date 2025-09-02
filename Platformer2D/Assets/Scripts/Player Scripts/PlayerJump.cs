@@ -1,40 +1,32 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(InputReader))]
 public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private InputReader _inputReader;
     [SerializeField] private Raycaster _raycaster;
     [SerializeField] private float _jumpForce = 10.0f;
 
-    private bool _isGrounded;
-
     private void Awake()
     {
+        _inputReader = GetComponent<InputReader>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable()
     {
-        _raycaster.Grounded += SetGrounded;
+        _inputReader.Jumping += Jump;
     }
 
     private void OnDisable()
     {
-        _raycaster.Grounded -= SetGrounded;
+        _inputReader.Jumping -= Jump;
     }
 
-    private void SetGrounded(bool isGrounded)
+    private void Jump()
     {
-        _isGrounded = isGrounded;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded == true)
-        {
+        if (_raycaster.IsGrounded == true)
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-            _isGrounded = false;
-        }
     }
 }
