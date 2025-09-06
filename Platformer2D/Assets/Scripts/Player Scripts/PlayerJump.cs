@@ -3,10 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(InputReader))]
 public class PlayerJump : MonoBehaviour
 {
+    [SerializeField] private float _jumpForce = 7.5f;
+    [SerializeField] private PlayerAnimations _playerAnimations;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private InputReader _inputReader;
-    [SerializeField] private Raycaster _raycaster;
-    [SerializeField] private float _jumpForce = 10.0f;
+    [SerializeField] private GroundDetector _groundDetector;
 
     private void Awake()
     {
@@ -26,7 +27,10 @@ public class PlayerJump : MonoBehaviour
 
     private void Jump()
     {
-        if (_raycaster.IsGrounded == true)
+        if (_groundDetector.IsGrounded)
+        {
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            _playerAnimations.PlayJupmAnimation();
+        }
     }
 }
