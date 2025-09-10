@@ -1,47 +1,25 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(GroundDetector), typeof(InputReader))]
+[RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    //[SerializeField] private Raycaster _raycaster;
-    //[SerializeField] private InputReader _inputReader;
 
-    private string _animationJump = "Jump";
-    private string _animationIdle = "Idle";
-    private string _animationRun = "Run";
+    public static readonly int Speed = Animator.StringToHash(nameof(Speed));
+    public static readonly int IsGrounded = Animator.StringToHash(nameof(IsGrounded));
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        //_raycaster = GetComponent<Raycaster>();
-        //_inputReader = GetComponent<InputReader>();
     }
 
-    //private void Update()
-    //{
-    //    if (_raycaster.IsGrounded == false)
-    //        _animator.Play(_animationJump);
-
-    //    if (_inputReader.DirectionX == 0 && _raycaster.IsGrounded == true)
-    //        _animator.Play(_animationIdle);
-
-    //    if (_inputReader.DirectionX != 0 && _raycaster.IsGrounded == true)
-    //        _animator.Play(_animationRun);
-    //}
-
-    public void PlayJupmAnimation()
+    public void SetSpeed(float speed)
     {
-        _animator.Play(_animationJump);
+        _animator.SetFloat(Speed, speed);
     }
 
-    public void PlayIdleAnimation() 
+    public void SetGrounded(bool isGrounded)
     {
-        _animator.Play(_animationIdle);
-    }
-
-    public void PlayRunAnimation() 
-    {
-        _animator.Play(_animationRun);
+        _animator.SetBool(IsGrounded, isGrounded);
     }
 }

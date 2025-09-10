@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd324d2d020ae4409dd68ec3c14b804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.6
+  _speed: 1
   _playerAnimations: {fileID: 975405414}
   _inputReader: {fileID: 975405418}
   _rotator: {fileID: 975405417}

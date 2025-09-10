@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(InputReader), typeof(Rotator))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed = 0.6f;
+    [SerializeField] private float _speed = 0.75f;
     [SerializeField] private PlayerAnimations _playerAnimations;
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private Rotator _rotator;
@@ -35,10 +35,7 @@ public class PlayerMovement : MonoBehaviour
         else if (_direction.x > 0)
             _rotator.RotateRight();
 
-        if (_direction.x == 0)
-            _playerAnimations.PlayIdleAnimation();
-        else
-            _playerAnimations.PlayRunAnimation();
+        _playerAnimations.SetSpeed(Mathf.Abs(_direction.x));
     }
 
     private void FixedUpdate()

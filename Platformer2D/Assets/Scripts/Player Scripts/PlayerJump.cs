@@ -25,12 +25,14 @@ public class PlayerJump : MonoBehaviour
         _inputReader.Jumping -= Jump;
     }
 
+    private void Update()
+    {
+        _playerAnimations.SetGrounded(_groundDetector.IsGrounded);
+    }
+
     private void Jump()
     {
         if (_groundDetector.IsGrounded)
-        {
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-            _playerAnimations.PlayJupmAnimation();
-        }
     }
 }
