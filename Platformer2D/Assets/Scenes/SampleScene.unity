@@ -888,6 +888,7 @@ GameObject:
   - component: {fileID: 975405418}
   - component: {fileID: 975405419}
   - component: {fileID: 975405420}
+  - component: {fileID: 975405421}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -1037,7 +1038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd324d2d020ae4409dd68ec3c14b804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 0.75
   _playerAnimations: {fileID: 975405414}
   _inputReader: {fileID: 975405418}
   _rotator: {fileID: 975405417}
@@ -1144,6 +1145,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _overlapRadius: 0.45
   _offset: {x: 0, y: -0.05}
+--- !u!114 &975405421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975405407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbfae7cad4e82646b24ea89c0b0d13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &1120354697
 GameObject:
   m_ObjectHideFlags: 0
