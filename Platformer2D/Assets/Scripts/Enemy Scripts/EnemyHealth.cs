@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _maxHealth = 50;
     [SerializeField] private int _currentHealth;
 
     private void Start()
@@ -17,13 +17,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            Debug.Log("Player has died...");
+            Debug.Log("Enemy has died...");
+            Destroy(this.gameObject);
         }
-    }
-
-    public void Heal(int amount)
-    {
-        _currentHealth += amount;
-        _currentHealth = Mathf.Min(_currentHealth, _maxHealth);
     }
 }
