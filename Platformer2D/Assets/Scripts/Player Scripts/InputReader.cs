@@ -6,11 +6,15 @@ public class InputReader : MonoBehaviour
     private const string Horizontal = nameof(Horizontal);
 
     public float DirectionX { get; private set; }
+    public event Action Shooting;
     public event Action Moving;
     public event Action Jumping;
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            Shooting?.Invoke();
+
         if (Input.GetKeyDown(KeyCode.Space))
             Jumping?.Invoke();
 

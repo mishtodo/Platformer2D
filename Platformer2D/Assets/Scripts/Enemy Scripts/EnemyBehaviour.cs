@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyMover), typeof(EnemyFollower))]
 public class EnemyBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private EnemyFollower _enemyFollower;
+    [SerializeField] private EnemyMover _enemyMover;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.TryGetComponent<PlayerMovement>(out PlayerMovement player))
+        {
+            _enemyFollower.SetFollowing(true);
+            _enemyMover.SetMoving(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (collision.TryGetComponent<PlayerMovement>(out PlayerMovement player))
+        {
+            _enemyFollower.SetFollowing(false);
+            _enemyMover.SetMoving(true);
+        }
     }
 }
