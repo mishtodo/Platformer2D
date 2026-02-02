@@ -7,17 +7,25 @@ public class Bullet : MonoBehaviour
 
     public Action<Bullet> Dying;
 
-    private void OnCollision2DEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
+        {
             enemyHealth.TakeDamage(_bulletDamage);
+        }
 
-        Dying?.Invoke(this);
+        if (collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth playerHealth) == false)
+            Dying?.Invoke(this);
     }
 
     public void SetActive(bool state)
     {
         gameObject.SetActive(state);
+    }
+
+    public void InitializeVelocity(Vector3 velocity)
+    {
+        GetComponent<Rigidbody2D>().velocity = velocity;
     }
 
     public void InitializePosition(Vector3 position)

@@ -10,13 +10,12 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject _objectPull;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _fireRate = 0.5f;
-    [SerializeField] private float _bulletSpeed = 10f;
+    [SerializeField] private float _bulletSpeed = 13f;
 
     private ObjectPool<Bullet> _bulletsPool;
     private Coroutine _coroutine;
     private int _poolDefaultCapacity = 10;
     private int _poolMaxCapacity = 20;
-    private int _randomScale = 10;
 
     private void Awake()
     {
@@ -49,18 +48,20 @@ public class PlayerShooting : MonoBehaviour
 
     public void StartCoroutine()
     {
-        _coroutine = StartCoroutine(Shoot());
+        _coroutine = StartCoroutine(ShootWait());
     }
 
-    private IEnumerator Shoot()
+    private void Shoot()
+    {
+        GetBullet();
+        StartCoroutine();
+    }
+
+    private IEnumerator ShootWait()
     {
         var wait = new WaitForSecondsRealtime(_fireRate);
 
-        while (enabled)
-        {
-            yield return wait;
-            GetBullet();
-        }
+        yield return wait;
     }
 
     private void ActionOnGet(Bullet bullet)
@@ -68,6 +69,11 @@ public class PlayerShooting : MonoBehaviour
         bullet.Dying += ReleaseBullet;
         bullet.InitializePosition(_firePoint.position);
         bullet.SetActive(true);
+
+        if (_firePoint.parent.rotation == Quaternion.identity)
+            bullet.InitializeVelocity(_bulletSpeed * Vector3.right);
+        else 
+            bullet.InitializeVelocity(_bulletSpeed * Vector3.left);
     }
 
     private void ActionOnRelease(Bullet bullet)
