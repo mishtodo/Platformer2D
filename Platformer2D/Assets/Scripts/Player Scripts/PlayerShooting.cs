@@ -68,7 +68,7 @@ public class PlayerShooting : MonoBehaviour
     {
         bullet.Dying += ReleaseBullet;
         bullet.InitializePosition(_firePoint.position);
-        bullet.SetActive(true);
+        bullet.Activate();
 
         if (_firePoint.parent.rotation == Quaternion.identity)
             bullet.InitializeVelocity(_bulletSpeed * Vector3.right);
@@ -81,7 +81,7 @@ public class PlayerShooting : MonoBehaviour
         bullet.Dying -= ReleaseBullet;
         bullet.InitializePosition(_objectPull.transform.position);
         bullet.InitializeRotation(_objectPull.transform.rotation);
-        bullet.SetActive(false);
+        bullet.Deactivate();
     }
 
     private void ReleaseBullet(Bullet bullet)

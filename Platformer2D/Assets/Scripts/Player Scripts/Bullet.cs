@@ -9,18 +9,23 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
+        if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth resource))
         {
-            enemyHealth.TakeDamage(_bulletDamage);
+            resource.TakeDamage(_bulletDamage);
         }
 
-        if (collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth playerHealth) == false)
+        if (collision.gameObject.TryGetComponent<PlayerHealth>(out _) == false)
             Dying?.Invoke(this);
     }
 
-    public void SetActive(bool state)
+    public void Activate()
     {
-        gameObject.SetActive(state);
+        gameObject.SetActive(true);
+    }
+
+    public void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 
     public void InitializeVelocity(Vector3 velocity)
