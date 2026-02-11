@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class HealthPackCollector : MonoBehaviour
 {
-    [SerializeField] HealthPackSpawner _healthPackSpawner;
     [SerializeField] Health _health;
     [SerializeField] private int _healAmount = 10;
 
@@ -12,10 +11,10 @@ public class HealthPackCollector : MonoBehaviour
         _health = GetComponent<Health>();
     }
 
-    public void Collect(GameObject obj) 
+    public void Collect(HealthPack healthPack) 
     {
         Heal();
-        Destroy(obj);
+        healthPack.Collected();
     }
 
     private void Heal()

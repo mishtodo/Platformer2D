@@ -22,14 +22,12 @@ public class CollisionHandler : MonoBehaviour
     {
         if (collision.TryGetComponent<HealthPack>(out HealthPack healthPack))
         {
-            healthPack.Collected();
-            _healthPackCollector.Collect(collision.gameObject);
+            _healthPackCollector.Collect(healthPack);
         }
 
         if (collision.TryGetComponent<Coin>(out Coin coin))
         {
-            coin.Collected();
-            _coinCollector.Collect(collision.gameObject);
+            _coinCollector.Collect(coin);
         }
     }    
 }
