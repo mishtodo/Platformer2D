@@ -21,13 +21,13 @@ public class PlayerShooting : MonoBehaviour
     {
         _inputReader = GetComponent<InputReader>();
         _bulletsPool = new ObjectPool<Bullet>(
-        createFunc: () => Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity),
-        actionOnGet: (bullet) => ActionOnGet(bullet),
-        actionOnRelease: (bullet) => ActionOnRelease(bullet),
-        actionOnDestroy: (bullet) => Destroy(bullet),
-        collectionCheck: true,
-        defaultCapacity: _poolDefaultCapacity,
-        maxSize: _poolMaxCapacity);
+            createFunc: () => Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity),
+            actionOnGet: (bullet) => ActionOnGet(bullet),
+            actionOnRelease: (bullet) => ActionOnRelease(bullet),
+            actionOnDestroy: (bullet) => Destroy(bullet),
+            collectionCheck: true,
+            defaultCapacity: _poolDefaultCapacity,
+            maxSize: _poolMaxCapacity);
     }
 
     private void OnEnable()

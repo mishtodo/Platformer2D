@@ -168,7 +168,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 49
+  controlID: 62
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -295,8 +295,8 @@ MonoBehaviour:
     y: 0
     width: 365
     height: 939
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -778,9 +778,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 16.013485, y: 3.726553, z: 1.086608}
+    m_Target: {x: -1.2271591, y: 0.6024794, z: 0.5896463}
     speed: 2
-    m_Value: {x: 16.013485, y: 3.726553, z: 1.086608}
+    m_Value: {x: -1.167989, y: 0.7025572, z: 0.5919765}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -830,9 +830,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 18.414953
+    m_Target: 5.4114246
     speed: 2
-    m_Value: 18.414953
+    m_Value: 5.1783967
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -896,9 +896,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 0efbffff1a650000a0650000fe650000
+      m_SelectedIDs: f2650000
+      m_LastClickedID: 26098
+      m_ExpandedIDs: fcfaffff1a65000020650000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1105,7 +1105,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Player Scripts
+    - Assets/Scripts/Environtment Scripts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1115,16 +1115,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Player Scripts
+  - Assets/Scripts/Environtment Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Unity\Platformer2D\Platformer2D
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 63}
-    m_SelectedIDs: 76670000
-    m_LastClickedID: 26486
-    m_ExpandedIDs: 000000004e6700007267000000ca9a3b
+    m_SelectedIDs: 80670000
+    m_LastClickedID: 26496
+    m_ExpandedIDs: 00000000546700007867000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1152,7 +1152,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004e670000
+    m_ExpandedIDs: 0000000054670000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

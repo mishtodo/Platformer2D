@@ -1,61 +1,35 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CoinCollector), typeof(HealthPackCollector))]
 public class CollisionHandler : MonoBehaviour
 {
-    [SerializeField] private PlayerHealth _health;
     [SerializeField] private CoinCollector _coinCollector;
     [SerializeField] private HealthPackCollector _healthPackCollector;
-    [SerializeField] private int _healAmount = 10;
 
     private void Awake()
     {
-        _health = GetComponent<PlayerHealth>();
+        _coinCollector = GetComponent<CoinCollector>();
+        _healthPackCollector = GetComponent<HealthPackCollector>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        RedirectLogic(other.gameObject);
+        if (collision.gameObject.TryGetComponent<Bullet>(out _))
+            { }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        RedirectLogic(collision.gameObject);
-    }
-
-    private void RedirectLogic(GameObject obj)
-    {
-        switch (obj.tag)
+        if (collision.TryGetComponent<HealthPack>(out HealthPack healthPack))
         {
-            case "Coin":
-                CollectCoin(obj);
-                break;
-
-            case "Medkit":
-                UseMedkit(obj);
-                break;
-
-            case "EnemyBullet":
-                TakeDamage(obj);
-                break;
-
-            default:
-                break;
+            healthPack.Collected();
+            _healthPackCollector.Collect(collision.gameObject);
         }
-    }
 
-    private void CollectCoin(GameObject coin)
-    {
-        Destroy(coin);
-    }
-
-    private void UseMedkit(GameObject kit)
-    {
-        _health?.Heal(_healAmount);
-        Destroy(kit);
-    }
-
-    private void TakeDamage(GameObject bullet)
-    {
-        Destroy(bullet);
-    }
+        if (collision.TryGetComponent<Coin>(out Coin coin))
+        {
+            coin.Collected();
+            _coinCollector.Collect(collision.gameObject);
+        }
+    }    
 }

@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class CoinCollector : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    [SerializeField] CoinSpawner _coinSpawner;
+
+    public void Collect(Coin coin)
     {
-        if (collision.TryGetComponent<Coin>(out _))
-            Destroy(collision.gameObject);
+        _coinSpawner.DestroyCoin(coin);
     }
 }

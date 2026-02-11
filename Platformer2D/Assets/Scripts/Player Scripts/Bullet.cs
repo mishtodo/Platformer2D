@@ -5,16 +5,14 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private int _bulletDamage = 20;
 
-    public Action<Bullet> Dying;
+    public event Action<Bullet> Dying;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth resource))
-        {
+        if (collision.gameObject.TryGetComponent<Health>(out Health resource))
             resource.TakeDamage(_bulletDamage);
-        }
 
-        if (collision.gameObject.TryGetComponent<PlayerHealth>(out _) == false)
+        
             Dying?.Invoke(this);
     }
 

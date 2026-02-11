@@ -482,7 +482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2c8548b803d50459e4874301fe2519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 10
 --- !u!61 &351345094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1144,10 +1143,12 @@ GameObject:
   - component: {fileID: 975405414}
   - component: {fileID: 975405417}
   - component: {fileID: 975405418}
-  - component: {fileID: 975405419}
   - component: {fileID: 975405420}
-  - component: {fileID: 975405421}
   - component: {fileID: 975405422}
+  - component: {fileID: 975405419}
+  - component: {fileID: 975405424}
+  - component: {fileID: 975405423}
+  - component: {fileID: 975405425}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -1406,20 +1407,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _overlapRadius: 0.45
   _offset: {x: 0, y: -0.05}
---- !u!114 &975405421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975405407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fbfae7cad4e82646b24ea89c0b0d13b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _currentHealth: 0
 --- !u!114 &975405422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,6 +1425,48 @@ MonoBehaviour:
   _firePoint: {fileID: 1854312430}
   _fireRate: 0.5
   _bulletSpeed: 13
+--- !u!114 &975405423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975405407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f13a13492824434f8b84bb56c4bfa52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinCollector: {fileID: 0}
+  _healthPackCollector: {fileID: 0}
+--- !u!114 &975405424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975405407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a2fd6d44d228347bf0ccfa434eaf62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 0}
+  _healAmount: 10
+--- !u!114 &975405425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975405407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc7e94d13e002a4b92a3551e5f6e06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 0
 --- !u!1 &1107231424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,7 +1988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2c8548b803d50459e4874301fe2519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 10
 --- !u!61 &1286381393
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2479,7 +2507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2c8548b803d50459e4874301fe2519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 10
 --- !u!61 &1482963619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3281,7 +3308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2c8548b803d50459e4874301fe2519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 10
 --- !u!61 &1951221751
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6761,7 +6787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2c8548b803d50459e4874301fe2519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healAmount: 10
 --- !u!61 &1991734033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7172,11 +7197,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2004475140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5785b2f73e246e47b851bb15ec2b366, type: 3}
+  m_Script: {fileID: 11500000, guid: dbc7e94d13e002a4b92a3551e5f6e06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 50
-  _currentHealth: 50
+  _currentHealth: 0
 --- !u!1 &2070963040
 GameObject:
   m_ObjectHideFlags: 0
