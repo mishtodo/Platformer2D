@@ -10,9 +10,9 @@ public class EnemyDamager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<PlayerHealth>(out PlayerHealth playerHealth))
+        if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
-            StartCoroutine(playerHealth);
+            StartCoroutine(player);
         }
     }
 
@@ -27,18 +27,18 @@ public class EnemyDamager : MonoBehaviour
             StopCoroutine(_coroutine);
     }
 
-    public void StartCoroutine(PlayerHealth playerHealth)
+    public void StartCoroutine(Player player)
     {
-        _coroutine = StartCoroutine(DealDamage(playerHealth));
+        _coroutine = StartCoroutine(DealDamage(player));
     }
 
-    private IEnumerator DealDamage(PlayerHealth playerHealth)
+    private IEnumerator DealDamage(Player player)
     {
         var wait = new WaitForSecondsRealtime(_attackDelay);
 
         while(enabled)
         {
-            playerHealth.TakeDamage(_damageAmount);
+            player.GetComponent<Health>().TakeDamage(_damageAmount);
             yield return wait;
         }
     }

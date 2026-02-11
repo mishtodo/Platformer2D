@@ -853,18 +853,17 @@ GameObject:
   - component: {fileID: 975405409}
   - component: {fileID: 975405408}
   - component: {fileID: 975405413}
-  - component: {fileID: 975405426}
-  - component: {fileID: 975405412}
-  - component: {fileID: 975405415}
   - component: {fileID: 975405414}
   - component: {fileID: 975405417}
-  - component: {fileID: 975405418}
-  - component: {fileID: 975405420}
   - component: {fileID: 975405422}
   - component: {fileID: 975405419}
   - component: {fileID: 975405424}
   - component: {fileID: 975405423}
   - component: {fileID: 975405425}
+  - component: {fileID: 975405426}
+  - component: {fileID: 975405418}
+  - component: {fileID: 975405420}
+  - component: {fileID: 975405427}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -885,7 +884,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -1004,23 +1003,6 @@ Transform:
   - {fileID: 1166913530}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &975405412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975405407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd324d2d020ae4409dd68ec3c14b804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 0.5
-  _playerAnimations: {fileID: 975405414}
-  _inputReader: {fileID: 975405418}
-  _rotator: {fileID: 975405417}
-  _rigidbody: {fileID: 975405408}
 --- !u!95 &975405413
 Animator:
   serializedVersion: 7
@@ -1056,23 +1038,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 975405413}
---- !u!114 &975405415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 975405407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a152a9b8886f2a849be3861ddea6fc5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jumpForce: 7.5
-  _playerAnimations: {fileID: 975405414}
-  _rigidbody: {fileID: 975405408}
-  _inputReader: {fileID: 975405418}
-  _groundDetector: {fileID: 975405420}
 --- !u!114 &975405417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,7 +1087,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overlapRadius: 0.45
-  _offset: {x: 0, y: -0.05}
+  _offset: {x: 0, y: -0.125}
+  _checkingDelay: 0.25
 --- !u!114 &975405422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,11 +1101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37f5bb6bf373ca84ebb2c0f0080759d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 975405418}
   _bulletPrefab: {fileID: 5900626212741941026, guid: fa9a6e3e8a2cf5a4c866152dd7a47cce, type: 3}
   _objectPull: {fileID: 1166913529}
   _firePoint: {fileID: 1854312430}
-  _fireRate: 0.5
   _bulletSpeed: 13
 --- !u!114 &975405423
 MonoBehaviour:
@@ -1195,6 +1159,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3480f400031f8479ea24fab58eda2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shooter: {fileID: 975405422}
+  _groundDetector: {fileID: 975405420}
+  _inputReader: {fileID: 975405418}
+  _rotator: {fileID: 975405417}
+  _mover: {fileID: 975405427}
+--- !u!114 &975405427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975405407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44bbf81555f4514aa453b184513bf71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 975405408}
+  _speedX: 250
+  _jumpForce: 750
 --- !u!1 &1107231424
 GameObject:
   m_ObjectHideFlags: 0
@@ -5544,11 +5528,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6394922590201351100, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.55
+      value: 17.5
       objectReference: {fileID: 0}
     - target: {fileID: 6394922590201351100, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.51
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6394922590201351100, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
       propertyPath: m_LocalPosition.z

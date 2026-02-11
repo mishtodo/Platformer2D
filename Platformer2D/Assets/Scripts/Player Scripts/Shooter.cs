@@ -1,25 +1,19 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
-[RequireComponent(typeof(InputReader))]
-public class PlayerShooting : MonoBehaviour
+public class Shooter : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private GameObject _objectPull;
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private float _bulletSpeed = 13f;
 
     private ObjectPool<Bullet> _bulletsPool;
-    private Coroutine _coroutine;
     private int _poolDefaultCapacity = 10;
     private int _poolMaxCapacity = 20;
 
     private void Awake()
     {
-        _inputReader = GetComponent<InputReader>();
         _bulletsPool = new ObjectPool<Bullet>(
             createFunc: () => Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity),
             actionOnGet: (bullet) => ActionOnGet(bullet),
@@ -30,38 +24,9 @@ public class PlayerShooting : MonoBehaviour
             maxSize: _poolMaxCapacity);
     }
 
-    private void OnEnable()
-    {
-        _inputReader.Shooting += Shoot;
-    }
-
-    private void OnDisable()
-    {
-        _inputReader.Shooting -= Shoot;
-    }
-
-    public void StopCoroutine()
-    {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
-    }
-
-    public void StartCoroutine()
-    {
-        _coroutine = StartCoroutine(ShootWait());
-    }
-
-    private void Shoot()
+    public void Shoot()
     {
         GetBullet();
-        StartCoroutine();
-    }
-
-    private IEnumerator ShootWait()
-    {
-        var wait = new WaitForSecondsRealtime(_fireRate);
-
-        yield return wait;
     }
 
     private void ActionOnGet(Bullet bullet)

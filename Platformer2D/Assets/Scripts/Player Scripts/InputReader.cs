@@ -1,24 +1,32 @@
-using System;
 using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
     private const string Horizontal = nameof(Horizontal);
 
+    private bool _isJump;
+    private bool _isShooting;
+
     public float DirectionX { get; private set; }
-    public event Action Shooting;
-    public event Action Moving;
-    public event Action Jumping;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            Shooting?.Invoke();
+            _isShooting = true;
 
         if (Input.GetKeyDown(KeyCode.Space))
-            Jumping?.Invoke();
+            _isJump = true;
 
         DirectionX = Input.GetAxisRaw(Horizontal);
-        Moving?.Invoke();
+    }
+
+    public bool GetIsShooting() => GetBoolAsTrigger(ref _isShooting);
+    public bool GetIsJump() => GetBoolAsTrigger(ref _isJump);
+
+    private bool GetBoolAsTrigger(ref bool value)
+    {
+        bool localValue = value;
+        value = false;
+        return localValue;
     }
 }

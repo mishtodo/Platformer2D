@@ -21,6 +21,14 @@ public class Rotator : MonoBehaviour
     {
         if (transform.position.x > target.position.x)
             RotateRight();
+        else if (transform.position.x < target.position.x)
+            RotateLeft();
+    }
+
+    public void RotateTowardsDirection(float direction)
+    {
+        if (direction > 0)
+            RotateRight();
         else
             RotateLeft();
     }

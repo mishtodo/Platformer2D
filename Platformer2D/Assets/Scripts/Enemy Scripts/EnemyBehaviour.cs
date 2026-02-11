@@ -8,7 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<PlayerMovement>(out PlayerMovement player))
+        if (collision.TryGetComponent<Player>(out Player player))
         {
             _enemyFollower.SetFollowing(true);
             _enemyMover.SetMoving(false);
@@ -17,7 +17,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<PlayerMovement>(out PlayerMovement player))
+        if (collision.TryGetComponent<Player>(out Player player))
         {
             _enemyFollower.SetFollowing(false);
             _enemyMover.SetMoving(true);
