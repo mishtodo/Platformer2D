@@ -4,17 +4,13 @@ using UnityEngine;
 public class EnemyDamager : MonoBehaviour
 {
     [SerializeField] private int _damageAmount = 10;
+    [SerializeField] private float _overlapRadius = 1.25f;
     [SerializeField] private float _attackDelay = 1.0f;
+    [SerializeField] private LayerMask _player;
 
+    private Vector2 _center;
+    private Collider2D _collider;
     private Coroutine _coroutine;
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<Player>(out Player player))
-        {
-            StartCoroutine(player);
-        }
-    }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -27,19 +23,21 @@ public class EnemyDamager : MonoBehaviour
             StopCoroutine(_coroutine);
     }
 
-    public void StartCoroutine(Player player)
+    public void StartCoroutine()
     {
-        _coroutine = StartCoroutine(DealDamage(player));
+        _coroutine = StartCoroutine(DealDamage());
     }
 
-    private IEnumerator DealDamage(Player player)
+    private IEnumerator DealDamage()
     {
         var wait = new WaitForSecondsRealtime(_attackDelay);
+        _center = new(transform.position.x, transform.position.y);
+        _collider = Physics2D.OverlapCircle(_center, _overlapRadius, _player);
 
-        while(enabled)
-        {
-            player.GetComponent<Health>().TakeDamage(_damageAmount);
-            yield return wait;
-        }
+        if (_collider.gameObject.TryGetComponent<Player>(out Player player))
+            if (player.TryGetComponent<Health>(out Health health))
+                health.TakeDamage(_damageAmount);
+
+        yield return wait;
     }
 }

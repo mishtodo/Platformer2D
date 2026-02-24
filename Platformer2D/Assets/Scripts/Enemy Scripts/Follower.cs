@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Follower : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Mover _mover;
+    [SerializeField] private EnemyDamager _damager;
+
+    private float _arrivalDistance = 1.0f;
+
+    public void Follow(Transform target)
     {
-        
+        if (target != null)
+        {
+            if (Vector2.SqrMagnitude(target.position - transform.position) < _arrivalDistance)
+            {     
+                _damager.StartCoroutine();
+            }
+            else
+            {
+                _damager.StopCoroutine();
+                _mover.Move(GetDirection(target));
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public float GetDirection(Transform target)
     {
-        
+        float direction = (target.position - transform.position).normalized.x;
+        return direction;
     }
 }
