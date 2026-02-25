@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Vision : MonoBehaviour
 {
-    [SerializeField] private float _overlapRadius = 3.0f;
-    [SerializeField] private float _checkingDelay = 0.25f;
+    [SerializeField] private float _overlapRadius = 3.5f;
+    [SerializeField] private float _checkingDelay = 0.2f;
     [SerializeField] private LayerMask _player;
 
     private Collider2D _collider;
@@ -20,16 +20,16 @@ public class Vision : MonoBehaviour
 
     private void StartCoroutine()
     {
-        _coroutine = StartCoroutine(CheckPlayer());
+        _coroutine = StartCoroutine(CheckPlayerDelayed());
     }
 
     public void StopCoroutine()
     {
         if (_coroutine != null)
-            StopCoroutine(CheckPlayer());
+            StopCoroutine(CheckPlayerDelayed());
     }
 
-    private IEnumerator CheckPlayer()
+    private IEnumerator CheckPlayerDelayed()
     {
         var wait = new WaitForSecondsRealtime(_checkingDelay);
 
@@ -43,8 +43,8 @@ public class Vision : MonoBehaviour
         }
     }
 
-    public Collider2D GetTarget()
+    public Transform GetTargetTransform()
     {
-        return _collider;
+        return _collider.transform;
     }
 }

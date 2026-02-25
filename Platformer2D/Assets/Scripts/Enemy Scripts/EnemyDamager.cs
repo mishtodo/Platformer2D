@@ -3,18 +3,20 @@ using UnityEngine;
 
 public class EnemyDamager : MonoBehaviour
 {
-    [SerializeField] private int _damageAmount = 10;
-    [SerializeField] private float _overlapRadius = 1.25f;
+    [SerializeField] private int _damageAmount = 5;
     [SerializeField] private float _attackDelay = 1.0f;
-    [SerializeField] private LayerMask _player;
 
-    private Vector2 _center;
-    private Collider2D _collider;
     private Coroutine _coroutine;
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public void Attack(Health health)
     {
-        StopCoroutine();
+        if (_coroutine == null)
+            StartCoroutine(health);
+    }
+
+    public bool CanAttack(Transform transform, out Health health)
+    {
+        return transform.TryGetComponent<Health>(out health);
     }
 
     public void StopCoroutine()
@@ -23,21 +25,19 @@ public class EnemyDamager : MonoBehaviour
             StopCoroutine(_coroutine);
     }
 
-    public void StartCoroutine()
+    public void StartCoroutine(Health health)
     {
-        _coroutine = StartCoroutine(DealDamage());
+        _coroutine = StartCoroutine(DealDamage(health));
     }
 
-    private IEnumerator DealDamage()
+    private IEnumerator DealDamage(Health health)
     {
         var wait = new WaitForSecondsRealtime(_attackDelay);
-        _center = new(transform.position.x, transform.position.y);
-        _collider = Physics2D.OverlapCircle(_center, _overlapRadius, _player);
 
-        if (_collider.gameObject.TryGetComponent<Player>(out Player player))
-            if (player.TryGetComponent<Health>(out Health health))
-                health.TakeDamage(_damageAmount);
+        health.TakeDamage(_damageAmount);
 
         yield return wait;
+
+        _coroutine = null;
     }
 }

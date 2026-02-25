@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf49cf1c52c8ad46a08a464b2f9e496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _overlapRadius: 3
+  _overlapRadius: 3.5
   _checkingDelay: 0.25
   _player:
     serializedVersion: 2
@@ -249,8 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044c1669c67c35942b9cfc7c377ecac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mover: {fileID: 0}
-  _damager: {fileID: 0}
+  _mover: {fileID: 6314273294155047894}
+  _damager: {fileID: 574253288434758334}
 --- !u!114 &574253288434758334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,8 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45635d7999b626b44a9cd90484ab0eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 10
-  _overlapRadius: 1.25
+  _damageAmount: 5
+  _overlapRadius: 2
   _attackDelay: 1
   _player:
     serializedVersion: 2
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animations: {fileID: 3633235564681031310}
   _rotator: {fileID: 4450945144889673269}
-  _mover: {fileID: 0}
+  _mover: {fileID: 6314273294155047894}
   _follower: {fileID: 6832942204297978638}
   _patroler: {fileID: 840180297906776933}
   _vision: {fileID: 5720371144288745662}

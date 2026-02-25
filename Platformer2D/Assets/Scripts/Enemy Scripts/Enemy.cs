@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Follower _follower;
     [SerializeField] private Patroler _patroler;
     [SerializeField] private Vision _vision;
+    [SerializeField] private EnemyDamager _damager;
 
     private Rigidbody2D _rb;
 
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
         _follower = GetComponent<Follower>();
         _patroler = GetComponent<Patroler>();
         _vision = GetComponent<Vision>();
+        _damager = GetComponent<EnemyDamager>();
     }
 
     private void Update()
@@ -31,8 +33,16 @@ public class Enemy : MonoBehaviour
     {
         if (_vision.IsSeeing)
         {
-            _rotator.RotateTowards(_vision.GetTarget().transform);
-            _follower.Follow(_vision.GetTarget().transform);
+            if (_follower.IsFollow(_vision.GetTargetTransform()))
+            {
+                _rotator.RotateTowards(_vision.GetTargetTransform());
+                _mover.Move(_follower.GetDirection(_vision.GetTargetTransform()));
+            }
+            else
+            {
+                if (_damager.CanAttack(_vision.GetTargetTransform(), out Health health)) 
+                    _damager.Attack(health);
+            }
         }
         else
         {

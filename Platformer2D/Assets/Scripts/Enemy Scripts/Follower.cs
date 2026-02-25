@@ -2,25 +2,21 @@ using UnityEngine;
 
 public class Follower : MonoBehaviour
 {
-    [SerializeField] private Mover _mover;
-    [SerializeField] private EnemyDamager _damager;
+    [SerializeField] private float _arrivalDistance = 1.5f;
 
-    private float _arrivalDistance = 1.0f;
+    public bool IsFollowing { get; private set; }
 
-    public void Follow(Transform target)
+    private void Awake()
     {
-        if (target != null)
-        {
-            if (Vector2.SqrMagnitude(target.position - transform.position) < _arrivalDistance)
-            {     
-                _damager.StartCoroutine();
-            }
-            else
-            {
-                _damager.StopCoroutine();
-                _mover.Move(GetDirection(target));
-            }
-        }
+        IsFollowing = false;
+    }
+
+    public bool IsFollow(Transform target)
+    {
+        if (Vector2.SqrMagnitude(target.position - transform.position) < _arrivalDistance * _arrivalDistance || target == null)
+            return false;
+        else
+            return true;
     }
 
     public float GetDirection(Transform target)

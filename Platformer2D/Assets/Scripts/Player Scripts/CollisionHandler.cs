@@ -14,8 +14,7 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Bullet>(out _))
-            { }
+        if (collision.gameObject.TryGetComponent<Bullet>(out _)) { }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
