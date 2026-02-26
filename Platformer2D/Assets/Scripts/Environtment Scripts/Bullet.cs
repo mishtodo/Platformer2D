@@ -5,7 +5,14 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private int _bulletDamage = 20;
 
+    private Rigidbody2D _rb;
+
     public event Action<Bullet> Dying;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,7 +37,7 @@ public class Bullet : MonoBehaviour
 
     public void InitializeVelocity(Vector3 velocity)
     {
-        GetComponent<Rigidbody2D>().velocity = velocity;
+        _rb.velocity = velocity;
     }
 
     public void InitializePosition(Vector3 position)
