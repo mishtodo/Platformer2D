@@ -3,7 +3,7 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private GameObject _coinPrefab;
+    [SerializeField] private Coin _coinPrefab;
 
     private void Awake()
     {
@@ -25,9 +25,8 @@ public class CoinSpawner : MonoBehaviour
     {
         foreach (var spawnPoint in _spawnPoints)
         {
-            GameObject gameObject = Instantiate(_coinPrefab, spawnPoint.transform.position, Quaternion.identity);
-            gameObject.TryGetComponent<Coin>(out Coin coin);
-            coin.Dying += DestroyCoin;
+            Coin nextCoin = Instantiate<Coin>(_coinPrefab, spawnPoint.transform.position, Quaternion.identity);
+            nextCoin.Dying += DestroyCoin;
         }
     }    
 }

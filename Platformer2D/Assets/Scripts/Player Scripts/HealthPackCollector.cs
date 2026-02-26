@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class HealthPackCollector : MonoBehaviour
 {
-    [SerializeField] Health _health;
+    [SerializeField] private Health _health;
     [SerializeField] private int _healAmount = 10;
 
     private void Awake()

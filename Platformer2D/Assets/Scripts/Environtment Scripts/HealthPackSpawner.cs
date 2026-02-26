@@ -3,7 +3,7 @@ using UnityEngine;
 public class HealthPackSpawner : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private GameObject _healthPackPrefab;
+    [SerializeField] private HealthPack _healthPackPrefab;
 
     private void Awake()
     {
@@ -25,9 +25,8 @@ public class HealthPackSpawner : MonoBehaviour
     {
         foreach (var spawnPoint in _spawnPoints)
         {
-            GameObject gameObject = Instantiate(_healthPackPrefab, spawnPoint.transform.position, Quaternion.identity);
-            gameObject.TryGetComponent<HealthPack>(out HealthPack healthPack);
-            healthPack.Dying += DestroyHealthPack;
+            HealthPack nextHealthPack = Instantiate<HealthPack>(_healthPackPrefab, spawnPoint.transform.position, Quaternion.identity);
+            nextHealthPack.Dying += DestroyHealthPack;
         }
     }
 }

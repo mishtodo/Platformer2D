@@ -3,10 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Animations : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
+    private static readonly int Speed = Animator.StringToHash(nameof(Speed));
+    private static readonly int IsGrounded = Animator.StringToHash(nameof(IsGrounded));
 
-    public static readonly int Speed = Animator.StringToHash(nameof(Speed));
-    public static readonly int IsGrounded = Animator.StringToHash(nameof(IsGrounded));
+    [SerializeField] private Animator _animator;
 
     private void Awake()
     {

@@ -849,7 +849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoints: []
-  _healthPackPrefab: {fileID: 2386967525566869509, guid: c51a4bc365e2eea43ac9853c8424e49a, type: 3}
+  _healthPackPrefab: {fileID: 8483095608130180104, guid: c51a4bc365e2eea43ac9853c8424e49a, type: 3}
 --- !u!4 &896791795
 Transform:
   m_ObjectHideFlags: 0
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3480f400031f8479ea24fab58eda2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animations: {fileID: 0}
+  _animations: {fileID: 975405414}
   _shooter: {fileID: 975405422}
   _groundDetector: {fileID: 975405420}
   _inputReader: {fileID: 975405418}
@@ -5415,7 +5415,7 @@ MonoBehaviour:
   - {fileID: 962659821}
   - {fileID: 662212073}
   - {fileID: 259689570}
-  _coinPrefab: {fileID: 8572308713310991783, guid: c6b788780bdb1944999d5ca078366f66, type: 3}
+  _coinPrefab: {fileID: 2137078086676637350, guid: c6b788780bdb1944999d5ca078366f66, type: 3}
 --- !u!4 &2021233099
 Transform:
   m_ObjectHideFlags: 0
