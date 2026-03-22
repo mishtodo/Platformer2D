@@ -13,12 +13,12 @@ public class HealthPackCollector : MonoBehaviour
 
     public void Collect(HealthPack healthPack) 
     {
-        Heal();
+        TakeHeal();
         healthPack.Collected();
     }
 
-    private void Heal()
+    private void TakeHeal()
     {
-        _health.Heal(_healAmount);
+        _health.TakeHeal(_healAmount);
     }
 }
