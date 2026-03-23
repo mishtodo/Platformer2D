@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     public int Max => _max;
 
     public event Action<int> Changed;
+    public event Action<Health> Dying;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class Health : MonoBehaviour
 
             if (_current <= 0)
             {
-                Debug.Log("Has died...");
+                Dying?.Invoke(this);
             }
         }
     }

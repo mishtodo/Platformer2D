@@ -1,5 +1,8 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D), typeof(Animations), typeof(Rotator))]
+[RequireComponent(typeof(Mover), typeof(Follower), typeof(Patroler))]
+[RequireComponent(typeof(Vision), typeof(EnemyDamager))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Animations _animations;

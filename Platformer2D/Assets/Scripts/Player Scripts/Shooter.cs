@@ -18,7 +18,7 @@ public class Shooter : MonoBehaviour
             createFunc: () => Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity),
             actionOnGet: (bullet) => ActionOnGet(bullet),
             actionOnRelease: (bullet) => ActionOnRelease(bullet),
-            actionOnDestroy: (bullet) => Destroy(bullet),
+            actionOnDestroy: (bullet) => Destroy(bullet.gameObject),
             collectionCheck: true,
             defaultCapacity: _poolDefaultCapacity,
             maxSize: _poolMaxCapacity);
