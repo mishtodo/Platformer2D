@@ -562,7 +562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &257055260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,7 +610,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257055259}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -6648,7 +6648,6 @@ SceneRoots:
   - {fileID: 168437778}
   - {fileID: 975405411}
   - {fileID: 619869153}
-  - {fileID: 257055263}
   - {fileID: 1288141139}
   - {fileID: 1300966159}
   - {fileID: 1153522264}
@@ -6663,4 +6662,5 @@ SceneRoots:
   - {fileID: 80281588}
   - {fileID: 896791795}
   - {fileID: 2021233099}
+  - {fileID: 257055263}
   - {fileID: 1317260483}

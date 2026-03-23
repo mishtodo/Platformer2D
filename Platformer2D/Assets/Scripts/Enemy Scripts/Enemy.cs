@@ -1,8 +1,8 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Animations), typeof(Rotator))]
-[RequireComponent(typeof(Mover), typeof(Follower), typeof(Patroler))]
-[RequireComponent(typeof(Vision), typeof(EnemyDamager))]
+[RequireComponent(typeof(Animations), typeof(Rotator), typeof(Mover))]
+[RequireComponent(typeof(Follower), typeof(Patroler), typeof(Vision))]
+[RequireComponent(typeof(EnemyDamager), typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Animations _animations;
@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
         _animations = GetComponent<Animations>();
         _rotator = GetComponent<Rotator>();
         _mover = GetComponent<Mover>();
@@ -25,6 +24,7 @@ public class Enemy : MonoBehaviour
         _patroler = GetComponent<Patroler>();
         _vision = GetComponent<Vision>();
         _damager = GetComponent<EnemyDamager>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()

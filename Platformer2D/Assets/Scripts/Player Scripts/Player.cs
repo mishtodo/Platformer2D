@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animations), typeof(Shooter), typeof(GroundDetector))]
+[RequireComponent(typeof(InputReader), typeof(Rotator), typeof(Mover))]
 public class Player : MonoBehaviour 
 {
     [SerializeField] private Animations _animations;
@@ -13,10 +15,10 @@ public class Player : MonoBehaviour
     {
         _animations = GetComponent<Animations>();
         _shooter = GetComponent<Shooter>();
-        _inputReader = GetComponent<InputReader>();
-        _mover = GetComponent<Mover>();
         _groundDetector = GetComponent<GroundDetector>();
+        _inputReader = GetComponent<InputReader>();
         _rotator = GetComponent<Rotator>();
+        _mover = GetComponent<Mover>();
     }
 
     private void Update()
