@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         if (_inputReader.GetIsJump() && _groundDetector.IsGrounded)
             _mover.Jump();
 
-        if (_inputReader.GetIsLifeStealing()) { }
-        _ability.StartAbility();
+        if (_inputReader.GetIsLifeStealing() && _ability.IsRunning == false)
+            _ability.StartAbility();
     }
 }

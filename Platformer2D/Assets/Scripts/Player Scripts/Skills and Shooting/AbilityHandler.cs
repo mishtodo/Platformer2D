@@ -11,6 +11,11 @@ public class AbilityHandler : MonoBehaviour
     
     public bool IsRunning { get; private set; }
 
+    private void Start()
+    {
+        IsRunning = false;
+    }
+
     public void StartAbility()
     {
         if (_coroutine == null)
@@ -32,11 +37,19 @@ public class AbilityHandler : MonoBehaviour
 
     private IEnumerator Vampirism()
     {
+        IsRunning = true;
         _vampirism.gameObject.SetActive(true);
-        var wait = new WaitForSecondsRealtime(_duration + _calldown);
+        var wait = new WaitForSecondsRealtime(_duration);
+
+        _vampirism.StealLife();
 
         yield return wait;
 
+        wait = new WaitForSecondsRealtime(_calldown);
+
+        yield return wait;
+
+        IsRunning = false;
         _vampirism.gameObject.SetActive(false);
         _coroutine = null;
     }
