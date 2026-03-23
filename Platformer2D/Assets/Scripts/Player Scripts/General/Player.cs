@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animations), typeof(Shooter), typeof(GroundDetector))]
 [RequireComponent(typeof(InputReader), typeof(Rotator), typeof(Mover))]
+[RequireComponent(typeof(AbilityHandler))]
 public class Player : MonoBehaviour 
 {
     [SerializeField] private Animations _animations;
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private Rotator _rotator;
     [SerializeField] private Mover _mover;
+    [SerializeField] private AbilityHandler _ability;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
         _inputReader = GetComponent<InputReader>();
         _rotator = GetComponent<Rotator>();
         _mover = GetComponent<Mover>();
+        _ability = GetComponent<AbilityHandler>();
     }
 
     private void Update()
@@ -40,5 +43,8 @@ public class Player : MonoBehaviour
 
         if (_inputReader.GetIsJump() && _groundDetector.IsGrounded)
             _mover.Jump();
+
+        if (_inputReader.GetIsLifeStealing()) { }
+        _ability.StartAbility();
     }
 }
