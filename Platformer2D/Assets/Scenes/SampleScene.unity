@@ -761,7 +761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &407486602
 Transform:
   m_ObjectHideFlags: 0
@@ -847,6 +847,7 @@ MonoBehaviour:
   _enemy:
     serializedVersion: 2
     m_Bits: 128
+  _overlapRadus: 2.5
 --- !u!1 &414393778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,7 +1505,7 @@ Transform:
   m_GameObject: {fileID: 975405407}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5, y: -0.5, z: 1}
+  m_LocalPosition: {x: 11.68, y: -0.5, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1707,8 +1708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f4508899acede40be83ffee3c756c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 1
-  _calldown: 1
+  _duration: 6
+  _cooldown: 2
   _vampirism: {fileID: 407486605}
 --- !u!1 &1104233049
 GameObject:
@@ -2137,6 +2138,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 840180297906776933, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 840180297906776933, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
       propertyPath: _waypoints.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -2165,6 +2170,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1300966163}
     - target: {fileID: 1045362416614491349, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045362416614491349, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
       propertyPath: _enemyMover
       value: 
       objectReference: {fileID: 0}
@@ -2192,6 +2201,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4450945144889673269, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5720371144288745662, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5720371144288745662, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
       propertyPath: _overlapRadius
       value: 3.5
@@ -2199,6 +2216,10 @@ PrefabInstance:
     - target: {fileID: 6314273294155047894, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
       propertyPath: _speedX
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6314273294155047894, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6314273294155047894, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
       propertyPath: _jumpForce
@@ -2268,6 +2289,10 @@ PrefabInstance:
       propertyPath: _damager
       value: 
       objectReference: {fileID: 1300966168}
+    - target: {fileID: 6832942204297978638, guid: 73476ef4b0c9eb44ba351a209bccfb0b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

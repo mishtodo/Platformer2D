@@ -4,7 +4,7 @@ using UnityEngine;
 public class AbilityHandler : MonoBehaviour
 {
     [SerializeField] private float _duration = 1.0f;
-    [SerializeField] private float _calldown = 1.0f;
+    [SerializeField] private float _cooldown = 2.0f;
     [SerializeField] private AbilityVampirism _vampirism;
 
     private Coroutine _coroutine;
@@ -41,16 +41,21 @@ public class AbilityHandler : MonoBehaviour
         _vampirism.gameObject.SetActive(true);
         var wait = new WaitForSecondsRealtime(_duration);
 
+        //Debug.Log(IsRunning);
+
         _vampirism.StealLife();
 
         yield return wait;
 
-        wait = new WaitForSecondsRealtime(_calldown);
+        _vampirism.gameObject.SetActive(false);
+
+        wait = new WaitForSecondsRealtime(_cooldown);
 
         yield return wait;
 
         IsRunning = false;
-        _vampirism.gameObject.SetActive(false);
         _coroutine = null;
+
+        //Debug.Log(IsRunning);
     }
 }
