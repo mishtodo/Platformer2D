@@ -1,21 +1,52 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class AbilityView : MonoBehaviour
+public class AbilityView : MonoBehaviour
 {
-    [SerializeField] protected AbilityHandler AbilityHandler;
-    [SerializeField] protected Ability Ability;
-    [SerializeField] protected Slider CooldownSlider;
+    [SerializeField] private Slider _cooldownSlider;
+    [SerializeField] private float _sliderMaxValue = 1.0f;
+    [SerializeField] private float _sliderMinValue = 0.0f;
 
-    private void OnEnable()
+    private Coroutine _coroutine;
+
+    public void UpdateReload(bool IsRunning, float durationTime)
     {
-        Ability.StateChanged += UpdateReload;
+        if (IsRunning)
+        {
+            StopCoroutine();
+            StartCoroutine(_sliderMaxValue, durationTime);
+        }
+        else
+        {
+            StopCoroutine();
+            StartCoroutine(_sliderMinValue, durationTime);
+        }
     }
 
-    private void OnDisable()
+    public void StartCoroutine(float target, float smoothDuration)
     {
-        Ability.StateChanged -= UpdateReload;
+        _coroutine = StartCoroutine(ChangeReloadSmoothly(target, smoothDuration));
     }
 
-    public virtual void UpdateReload() { }
+    public void StopCoroutine()
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+    }
+
+    private IEnumerator ChangeReloadSmoothly(float target, float smoothDuration)
+    {
+        float distance = Mathf.Abs(_cooldownSlider.value - target);
+        float speed = distance / smoothDuration;
+
+        while (_cooldownSlider.value != target)
+        {
+            _cooldownSlider.value = Mathf.MoveTowards(_cooldownSlider.value, target, Time.deltaTime * speed);
+
+            yield return null;
+        }
+    }
 }

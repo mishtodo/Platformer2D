@@ -6,6 +6,7 @@ public class AbilityVampirism : MonoBehaviour
     [SerializeField] private LayerMask _player;
     [SerializeField] private LayerMask _enemy;
     [SerializeField] private float _overlapRadus = 2.5f;
+    [SerializeField] private int _minDamageAmount = 1;
 
     private Coroutine _coroutine;
     private Collider2D _enemyCollider2D;
@@ -38,7 +39,7 @@ public class AbilityVampirism : MonoBehaviour
         while (enabled)
         {
             _center = transform.parent.transform.position;
-            //Debug.Log(_center.x.ToString() + "/" + _center.y.ToString());
+
             _enemyCollider2D = Physics2D.OverlapCircle(_center, _overlapRadus, _enemy);
             _playerCollider2D = Physics2D.OverlapCircle(_center, _overlapRadus, _player);
 
@@ -46,20 +47,17 @@ public class AbilityVampirism : MonoBehaviour
             {
                 if(_enemyCollider2D.TryGetComponent<Health>(out Health enemyHealth))
                 {
-                    enemyHealth.TakeDamage(1);
+                    enemyHealth.TakeDamage(_minDamageAmount);
 
                     if (_playerCollider2D.TryGetComponent<Health>(out Health playerHealth))
                     {
-                        playerHealth.TakeHeal(1);
+                        playerHealth.TakeHeal(_minDamageAmount);
                     }
                 }
             }
 
-            //IsLifeStealing = _enemyCollider2D != null;
-
             yield return wait;
             _coroutine = null;
-            //Debug.Log("while enabled?");
         }
     }
 

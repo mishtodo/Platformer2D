@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class AbilityHandler : MonoBehaviour
 {
-    [SerializeField] private float _duration = 1.0f;
-    [SerializeField] private float _cooldown = 2.0f;
+    [SerializeField] private float _duration = 6.0f;
+    [SerializeField] private float _cooldown = 4.0f;
     [SerializeField] private AbilityVampirism _vampirism;
+    [SerializeField] private AbilityView _abilityView;
 
     private Coroutine _coroutine;
     
@@ -37,25 +38,20 @@ public class AbilityHandler : MonoBehaviour
 
     private IEnumerator Vampirism()
     {
+        var wait = new WaitForSecondsRealtime(_duration);
         IsRunning = true;
         _vampirism.gameObject.SetActive(true);
-        var wait = new WaitForSecondsRealtime(_duration);
-
-        //Debug.Log(IsRunning);
-
+        _abilityView.UpdateReload(IsRunning, _duration);
         _vampirism.StealLife();
 
         yield return wait;
 
-        _vampirism.gameObject.SetActive(false);
-
         wait = new WaitForSecondsRealtime(_cooldown);
+        _vampirism.gameObject.SetActive(false);
+        IsRunning = false;
+        _abilityView.UpdateReload(IsRunning, _cooldown);
 
         yield return wait;
-
-        IsRunning = false;
         _coroutine = null;
-
-        //Debug.Log(IsRunning);
     }
 }
