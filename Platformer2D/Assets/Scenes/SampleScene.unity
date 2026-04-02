@@ -880,6 +880,7 @@ MonoBehaviour:
   _player:
     serializedVersion: 2
     m_Bits: 64
+  _playerHealth: {fileID: 975405428}
   _enemy:
     serializedVersion: 2
     m_Bits: 128
@@ -1823,6 +1824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 6
   _cooldown: 4
+  _totalDamage: 20
   _vampirism: {fileID: 407486605}
   _abilityView: {fileID: 2101964914}
 --- !u!1 &1014422076

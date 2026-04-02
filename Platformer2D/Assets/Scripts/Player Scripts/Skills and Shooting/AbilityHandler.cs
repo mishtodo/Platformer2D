@@ -5,6 +5,7 @@ public class AbilityHandler : MonoBehaviour
 {
     [SerializeField] private float _duration = 6.0f;
     [SerializeField] private float _cooldown = 4.0f;
+    [SerializeField] private float _totalDamage = 20.0f;
     [SerializeField] private AbilityVampirism _vampirism;
     [SerializeField] private AbilityView _abilityView;
 
@@ -38,20 +39,36 @@ public class AbilityHandler : MonoBehaviour
 
     private IEnumerator Vampirism()
     {
-        var wait = new WaitForSecondsRealtime(_duration);
+        float elapsedTime = 0;
+        float timeTick = 0;
+
         IsRunning = true;
         _vampirism.gameObject.SetActive(true);
-        _abilityView.UpdateReload(IsRunning, _duration);
-        _vampirism.StealLife();
 
-        yield return wait;
+        while (elapsedTime <= _duration)
+        {
+            if(elapsedTime >= timeTick)
+            {
+                _vampirism.StealLife();
+                timeTick += _duration / _totalDamage;
+            }
 
-        wait = new WaitForSecondsRealtime(_cooldown);
+            elapsedTime += Time.deltaTime;
+            _abilityView.UpdateReload(IsRunning, elapsedTime / _duration);
+            yield return null;
+        }
+        
         _vampirism.gameObject.SetActive(false);
         IsRunning = false;
-        _abilityView.UpdateReload(IsRunning, _cooldown);
+        elapsedTime = 0;
 
-        yield return wait;
+        while (elapsedTime < _cooldown)
+        {
+            _abilityView.UpdateReload(IsRunning, elapsedTime / _cooldown);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
         _coroutine = null;
     }
 }
